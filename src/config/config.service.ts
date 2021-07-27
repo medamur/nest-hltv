@@ -1,7 +1,7 @@
-// src/config/config.service.ts
 import { TypeOrmModuleOptions } from '@nestjs/typeorm'
-
-require('dotenv').config()
+import * as dotenv from 'dotenv'
+import { join } from 'path'
+dotenv.config()
 
 class ConfigService {
 	constructor(private env: { [k: string]: string | undefined }) {}
@@ -39,11 +39,11 @@ class ConfigService {
 			password: this.getValue('POSTGRES_PASSWORD'),
 			database: this.getValue('POSTGRES_DATABASE'),
 
-			entities: ['**/*.entity{.ts,.js}'],
+			entities: [join(__dirname, '..', '/**/*.entity{.ts,.js}')],
 
 			migrationsTableName: 'migration',
 
-			migrations: ['src/migration/*.ts'],
+			migrations: [join(__dirname, '..', '/migration/*.ts')],
 
 			cli: {
 				migrationsDir: 'src/migration'

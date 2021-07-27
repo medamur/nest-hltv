@@ -63,7 +63,9 @@
     ],
     "linterOptions": {
       "exclude": [
-        "./src/**/*.d.ts"
+        "./src/**/*.d.ts",
+        "./node_modules",
+        "./src/migration"
       ]
     }
   }
